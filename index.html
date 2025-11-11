@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barter - AI Negotiation Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h1>BARTER</h1>
+                <p class="logo-tagline">Smart Shopping with AI-Powered Negotiation</p>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">All Products</a>
+                <a href="#categories" class="nav-link">Product Category</a>
+                <div class="nav-user" id="navUser">
+                    <button class="btn-icon" id="cartBtn">🛒</button>
+                    <button class="btn-login" onclick="openLoginModal()">Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="typing-text" id="typingText">Chat.</span>
+                    <span class="cursor">|</span>
+                </h1>
+                <p class="hero-description">
+                    Experience the future of online shopping where you don't just buy—you negotiate! 
+                    Let our AI assistant Barter help you get the best deals on your favorite products.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToProducts()">Start Shopping</button>
+                    <button class="btn-secondary" onclick="openChatbotDemo()">Try Barter AI</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-illustration">
+                    <div class="chat-bubble bubble-1">
+                        <span>💬 Let's negotiate!</span>
+                    </div>
+                    <div class="chat-bubble bubble-2">
+                        <span>🤝 Great deal!</span>
+                    </div>
+                    <div class="chat-bubble bubble-3">
+                        <span>💰 You saved 20%!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Barter Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Barter</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        <strong>Barter</strong> is your intelligent shopping companion that brings the art of negotiation 
+                        to online shopping. Unlike traditional e-commerce platforms with fixed prices, Barter empowers 
+                        you to negotiate prices through natural conversation with our AI assistant.
+                    </p>
+                    <p>
+                        Our smart algorithm analyzes your offers and responds strategically, creating a fun and engaging 
+                        shopping experience while ensuring you get the best possible deals.
+                    </p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI-Powered</h3>
+                        <p>Smart negotiation powered by advanced algorithms</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Natural Chat</h3>
+                        <p>Negotiate like you're talking to a friend</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Best Deals</h3>
+                        <p>Save up to 20% through smart negotiation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-section" id="home">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Handpicked deals you'll love</p>
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Featured products will be loaded here -->
+            </div>
+            <div class="view-all-container">
+                <button class="btn-outline" onclick="scrollToAllProducts()">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Teaser Section -->
+    <section class="chatbot-teaser">
+        <div class="container teaser-container">
+            <div class="teaser-content">
+                <div class="teaser-avatar">🤖</div>
+                <div class="teaser-text">
+                    <h3>Hi, I'm Barter!</h3>
+                    <p>Want help finding your perfect deal? Let's chat and negotiate!</p>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="openChatbotDemo()">Chat with Barter</button>
+        </div>
+    </section>
+
+    <!-- Login/Signup Reminder Banner -->
+    <section class="auth-reminder" id="authReminder">
+        <div class="container reminder-container">
+            <div class="reminder-content">
+                <h3>🎉 Join Barter Today!</h3>
+                <p>Create an account to save your favorite products and chat history.</p>
+            </div>
+            <div class="reminder-buttons">
+                <button class="btn-outline" onclick="openLoginModal()">Login</button>
+                <button class="btn-primary" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            <button class="reminder-close" onclick="closeAuthReminder()">×</button>
+        </div>
+    </section>
+
+    <!-- All Products Section -->
+    <section class="all-products-section" id="categories">
+        <div class="container">
+            <h2 class="section-title">All Products</h2>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search products..." oninput="filterProducts()">
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                    <button class="filter-btn" onclick="filterByCategory('Electronics')">Electronics</button>
+                    <button class="filter-btn" onclick="filterByCategory('Accessories')">Accessories</button>
+                    <button class="filter-btn" onclick="filterByCategory('Home')">Home</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- All products will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "I saved ₹500 on my headphones! The negotiation feature is so fun and engaging."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Priya Sharma</strong>
+                        <span>Delhi</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Finally, an online store where I can negotiate! Got an amazing deal on my smartwatch."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Rahul Verma</strong>
+                        <span>Mumbai</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Shopping with Barter is addictive! The AI knows exactly when to accept my offer."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Ankit Patel</strong>
+                        <span>Bangalore</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3>BARTER</h3>
+                <p>Smart Shopping with AI-Powered Negotiation</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <a href="#home">All Products</a>
+                    <a href="#categories">Categories</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Barter - AI Negotiation Chatbot</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal auth-modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+            <h2>Welcome Back! 👋</h2>
+            <p class="auth-subtitle">Login to continue your shopping journey</p>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="your.email@example.com">
+                    <span class="error-message" id="loginEmailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    <span class="error-message" id="loginPasswordError"></span>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-full">Login</button>
+            </form>
+            
+            <div class="auth-switch">
+                <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign up here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal auth-modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-btn" onclick="closeSignupModal()">&times;</span>
+            <h2>Join Barter! 🎉</h2>
+            <p class="auth-subtitle">Create your account to start negotiating</p>
+            
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required placeholder="John Doe">
+                    <span class="error-message" id="signupNameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required placeholder="your.email@example.com">
+                    <span class="error-message" id="signupEmailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required placeholder="Minimum 6 characters">
+                    <span class="error-message" id="signupPasswordError"></span>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-full">Create Account</button>
+            </form>
+            
+            <div class="auth-switch">
+                <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <div class="chat-header">
+                <h3>💬 Chat with Barter 🤖 – Your AI Negotiation Assistant</h3>
+                <span class="close-btn" onclick="closeChat()">&times;</span>
+            </div>
+            
+            <div class="product-info" id="chatProductInfo">
+                <!-- Selected product info will appear here -->
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Chat messages will appear here -->
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="send-btn">Send</button>
+            </div>
+
+            <div class="negotiation-summary" id="negotiationSummary" style="display: none;">
+                <!-- Summary will appear here after deal -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Confirmation Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content purchase-confirmation">
+            <span class="close-btn" onclick="closePurchaseModal()">&times;</span>
+            <div class="success-animation">✅</div>
+            <h2>Purchase Successful! 🎉</h2>
+            <div id="purchaseDetails"></div>
+            <p class="thank-you">Thanks for your purchase! Barter is happy to serve you 😊</p>
+            <button onclick="closePurchaseModal()" class="btn-primary">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="auth.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
